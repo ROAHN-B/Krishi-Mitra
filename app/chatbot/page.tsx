@@ -165,7 +165,7 @@ const getMultilingualMessages = (lang: Language) => {
     return messages[lang] || messages.en;
 };
 
-// ---------- SPEAKER COMPONENT (No change) ----------
+
 function Speaker({ text, lang }: { text: string; lang: string }) {
     const [speaking, setSpeaking] = useState(false);
     const [isSupported, setIsSupported] = useState(true);
@@ -227,7 +227,6 @@ function Speaker({ text, lang }: { text: string; lang: string }) {
     );
 }
 
-// ---------- SUGGESTION BUTTONS (No change) ----------
 function SuggestionButtons({ suggestions, onSuggestionClick }: { suggestions: string[]; onSuggestionClick: (s: string) => void }) {
     return (
         <div className="w-full mt-3 space-y-2">
@@ -245,7 +244,7 @@ function SuggestionButtons({ suggestions, onSuggestionClick }: { suggestions: st
     );
 }
 
-// ---------- VOICE RECOGNITION HOOK (No change) ----------
+
 function useVoiceRecognition(lang: Language, onTranscript: (transcript: string) => void) {
     const [isListening, setIsListening] = useState(false);
     const [error, setError] = useState<string | null>(null);
@@ -314,7 +313,7 @@ function useVoiceRecognition(lang: Language, onTranscript: (transcript: string) 
     return { isListening, error, startListening, stopListening };
 }
 
-// ---------- NEW: YouTube Player Component (renders multiple videos) ----------
+
 function YouTubePlayer({ videos }: { videos: VideoResult[] }) {
     if (!videos || videos.length === 0) return null;
 
@@ -361,9 +360,7 @@ function YouTubePlayer({ videos }: { videos: VideoResult[] }) {
         </div>
     );
 }
-// ----------------------------------------------------
 
-// ---------- MAIN COMPONENT ----------
 function ChatbotContent() {
     const { translations: t, currentLang, setCurrentLang } = useLanguage();
     const { latestSoilReport } = useAdvisory();
@@ -494,7 +491,7 @@ function ChatbotContent() {
     }, [messages, activeChatId]);
 
 
-    // ----- CORE API CALL (Updated logic for multiple video queries) -----
+
     const sendMessageToGemini = useCallback(async (message: string, image: File | null = null) => {
         if (!GEMINI_API_KEY || !activeChatId) return;
         setIsLoading(true);

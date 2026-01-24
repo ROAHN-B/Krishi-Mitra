@@ -33,7 +33,7 @@ export async function POST(req: NextRequest) {
     const buffer = Buffer.from(await file.arrayBuffer());
     const imagePart = fileToGenerativePart(buffer, file.type);
     
-    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+    const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
     const prompt = `
       As an expert agricultural analyst, analyze this image of a crop plant.
